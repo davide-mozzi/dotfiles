@@ -1,0 +1,103 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "plain",
+          "foreground": "#22DA6E",
+          "template": "{{ if .WSL }}WSL {{ end }}{{.Icon}} "
+        },
+        {
+          "type": "shell",
+          "style": "plain",
+          "foreground": "#22DA6E",
+          "template": "{{ .Name }} "
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "#7FDBCA",
+          "template": "\uedc5 {{ .UserName }}"
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "#82AAFF",
+          "options": {
+            "style": "agnoster_short",
+            "max_depth": 2,
+            "folder_separator_icon": "/"
+          },
+          "template": " \uf07b {{ .Path }} "
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#FFEB95",
+          "options": {
+            "fetch_status": true,
+            "fetch_push_status": true,
+            "fetch_upstream_icon": true,
+            "git_icon": "\uE5FB"
+          },
+          "template": "{{ .UpstreamIcon }} {{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .Behind 0 }} \udb82\udf7d {{.Behind}}{{ end }}{{ if gt .Ahead 0 }} \udb82\udf7e {{.Ahead}}{{ end }}{{ if gt .StashCount 0 }} \uf0c7 {{ .StashCount }}{{ end }} "
+        },
+        {
+          "type": "project",
+          "style": "plain",
+          "foreground": "#C792EA",
+          "template": "{{ if .Error }}{{ .Error }}{{ else }}\uf487 {{ if .Name }}{{ .Name }}{{ end }} {{ if .Version }}v{{.Version}}{{ end }}{{ end }} "
+        },
+        {
+          "type": "kubectl",
+          "style": "plain",
+          "foreground": "#ADDB67",
+          "template": "\udb84\udcfe {{ .Context }}{{ if .Namespace }} ({{ .Namespace }}){{ end }} "
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "overflow": "break",
+      "segments": [
+        { "type": "executiontime", "style": "plain", "foreground": "#D6DEEB" },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "#D6DEEB",
+          "foreground_templates": ["{{ if .Error }}#EF5350{{end}}"],
+          "options": {
+            "always_enabled": true,
+            "status_template": "{{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ reason .Code }}{{ end }}"
+          },
+          "template": "{{ if .Error }}{{ .String  }} {{ else }}\uf00c {{ end }}"
+        }
+      ]
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "root",
+          "style": "plain",
+          "foreground": "#EF5350",
+          "template": "\ue3bf "
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#CD4277",
+          "template": "# "
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 4
+}
